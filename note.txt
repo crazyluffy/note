@@ -1,0 +1,186 @@
+https://doc.yamu.com/svn      renming/renming
+ftp://ftp.yamu.com
+http://202.105.179.69:8080/prj/rdns/  renming/Ming123456   --trac
+
+QQEIM  2850752855/Ming12
+vmware  renming/renm
+vmware 12 key:VF5XA-FNDDJ-085GZ-4NXZ9-N20E6
+保险： 15216411578 Ming892419gt
+
+
+0xabcd类型以char型手动转short或int型时，运算结果不是预期结果。
+原因：以char类型参与此类运算时，char会转为short或int类型，若某一字节
+的char值第一比特为1（即char的值大于125），则将该char转为short或int类
+型的负数，然后参与运算，因此结果不是预期的结果。
+例：将0xABCD转为short，若进行如下运算：
+short i = ((0xAB) << 8) + 0xCD;
+则操作系统实际运算为：
+short i = ((0xFFAB) << 8) + 0xFFCD;
+
+
+ubuntu用apt-get下载的软件 路径在：/var/cache/apt/archives
+http://packages.ubuntu.com/ ubuntu软件包搜索
+http://packages.debian.org/  debian软件包搜索
+http://search.aol.co.uk/  
+
+http://202.105.179.69:8080/prj/rdns  renming/RMrenming  trac登陆地址
+
+>>>>valgrind
+valgrind --tool=memcheck --leak-check=full --show-reachable=yes --track-origins=yes ./test_ite1
+
+1.Memcheck是一个内存错误检测器。它有助于使你的程序，尤其是那些用C和C++写的程序，更加准确。
+2.Cachegrind是一个缓存和分支预测分析器。它有助于使你的程序运行更快。
+3.Callgrind是一个调用图缓存生成分析器。它与Cachegrind的功能有重叠，但也收集Cachegrind不收集的一些信息。
+4.Helgrind是一个线程错误检测器。它有助于使你的多线程程序更加准确。
+5.DRD也是一个线程错误检测器。它和Helgrind相似，但使用不同的分析技术，所以可能找到不同的问题。
+6.Massif是一个堆分析器。它有助于使你的程序使用更少的内存。
+7.DHAT是另一种不同的堆分析器。它有助于理解块的生命期、块的使用和布局的低效等问题。
+8.SGcheck是一个实验工具，用来检测堆和全局数组的溢出。它的功能和Memcheck互补：SGcheck找到Memcheck无法找到的问题，反之亦然。
+9.BBV是个实验性质的SimPoint基本块矢量生成器。它对于进行计算机架构的研究和开发很有用处。
+
+也有一些对大多数用户没有用的小工具：Lackey是演示仪器基础的示例工具；Nulgrind是一个最小化的Valgrind工具，不做分析或者操作，仅用于测试目的。 
+
+>>>>GDB:
+where: bt的别名
+bt：   查看当前栈信息
+bt +n: 查看最顶n层栈信息
+bt -n: 查看最底n层栈信息
+frame f： 打印当前栈位置
+f n  :   切换至第n层 
+info f： 查看当前栈详细信息
+up down : 上下移动 1<n> 层栈
+info local: 打印当前栈变量
+
+set var ret=0 : 设置运行时变量的值
+print ret=-1 : 同上
+
+
+>>>>dmesg:
+collector[1847]: segfault at 000000000000000c rip 000000000040308a rsp 0000007fbffff820 error 4
+at后面地址:访问越界的地址,rip:指令地址,rsp:栈地址,error:错误类型.
+error number是由三个字位组成的，从高到底分别为bit2 bit1和bit0,所以它的取值范围是0~7.
+bit2: 值为1表示是用户态程序内存访问越界，值为0表示是内核态程序内存访问越界
+bit1: 值为1表示是写操作导致内存访问越界，值为0表示是读操作导致内存访问越界
+bit0: 值为1表示没有足够的权限访问非法地址的内容，值为0表示访问的非法地址根本没有对应的页面，也就是无效地址
+一般的程序带-g编译的话用addr2line -e ./collector 000000000040308a就大概能定位到函数
+想具体一点定位可能是哪行语句的话,用objdump -d ./collector查看40308a对应的程序汇编代码即可.
+
+
+>>>>/proc/stat:
+CPU 以及CPU0、CPU1、CPU2、CPU3每行的每个参数意思（以第一行为例）为：
+user (432661) 从系统启动开始累计到当前时刻，用户态的CPU时间（单位：jiffies） ，不包含 nice值为负进程。1jiffies=0.01秒
+nice (13295) 从系统启动开始累计到当前时刻，nice值为负的进程所占用的CPU时间（单位：jiffies）
+system (86656) 从系统启动开始累计到当前时刻，核心时间（单位：jiffies）
+idle (422145968) 从系统启动开始累计到当前时刻，除硬盘IO等待时间以外其它等待时间（单位：jiffies）
+iowait (171474) 从系统启动开始累计到当前时刻，硬盘IO等待时间（单位：jiffies） ，
+irq (233) 从系统启动开始累计到当前时刻，硬中断时间（单位：jiffies）
+softirq (5346) 从系统启动开始累计到当前时刻，软中断时间（单位：jiffies）
+
+CPU时间=user+system+nice+idle+iowait+irq+softirq
+“intr”这行给出中断的信息，第一个为自系统启动以来，发生的所有的中断的次数；然后每个数对应一个特定的中断自系统启动以来所发生的次数。
+“ctxt”给出了自系统启动以来CPU发生的上下文交换的次数。
+“btime”给出了从系统启动到现在为止的时间，单位为秒。
+“processes (total_forks) 自系统启动以来所创建的任务的个数目。
+“procs_running”：当前运行队列的任务的数目。
+“procs_blocked”：当前被阻塞的任务的数目。
+
+>>>>>>>ioctl
+http://www.cnblogs.com/landy-weiai/p/3752665.html
+
+
+>>>>>>>google shell
+http://g.ihonker.org/linuxg.php#help
+
+>>>>>>>node.js 
+--dns set timeout
+http://stackoverflow.com/questions/10777657/node-js-dns-lookup-how-to-set-timeout
+
+>>>>>>>thrift
+thrift将一个函数声明拆分成四部分：
+1.传入参数；2.返回参数；3.函数处理；4.函数调用
+
+.thrift生成的代码： 某一个函数声明（接口） 会生成4套函数:
+args套，
+    封装记录形参，由 参数类func_args， 参数写入方法，写出方法 func_args.write func_args.read 组成
+result套，
+    封装记录结果，包括返回值以及异常信息， 同args，亦由参数类func_result，写入写出方法func_result.write func_result.read 组成
+client func 套：
+    调用该函数时会调用该套函数，包含client.send_func client.recv_func 函数，send_func 将参数发送给处理方，即server， recv_func接收返回结果
+process func
+    调用该函数的实际处理逻辑， process.func, 该过程将return，以及throw的结果写入result类，并将该类返回。
+
+c语言版编译选项：
+-I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -lglib-2.0 -lgobject-2.0 /usr/local/lib/libthrift_c_glib.a
+
+--摘：
+Thrift 主要由5个部分组成：
+
+　　· 类型系统以及 IDL 编译器：负责由用户给定的 IDL 文件生成相应语言的接口代码
+
+　　· TProtocol：实现 RPC 的协议层，可以选择多种不同的对象串行化方式，如 JSON, Binary。
+
+　　· TTransport：实现 RPC 的传输层，同样可以选择不同的传输层实现，如socket, 非阻塞的 socket, MemoryBuffer 等。
+
+　　· TProcessor：作为协议层和用户提供的服务实现之间的纽带，负责调用服务实现的接口。
+
+　　· TServer：聚合 TProtocol, TTransport 和 TProcessor 几个对象。
+>>>>>>>>scl
+scl 可以在系统中安装多个版本的应用，如系统默认python 2.6版本，可以用scl安装python27 
+
+>>>>>>>
+   build-essential: make 等工具
+   bash-completion: shell 自动补全工具
+
+>>>>>>Xpath
+
+>>>>>>vi
+set nu
+set tabstop=4
+set autoindent
+set cindent
+set shiftwidth=4
+set expandtab
+set hlsearch
+let c_space_errors=1
+ts: ctags中显示所有的变量定义
+resize: 调整窗口高度
+vertical resize: 调整窗口宽度
+set fdm=XXX : 设置折叠方式
+        manual          手工定义折叠         
+        indent          更多的缩进表示更高级别的折叠         
+        expr            用表达式来定义折叠         
+        syntax          用语法高亮来定义折叠        
+        diff            对没有更改的文本进行折叠       
+        marker          对文中的标志折叠
+
+zc     折叠
+zC     对所在范围内所有嵌套的折叠点进行折叠
+zo     展开折叠
+zO     对所在范围内所有嵌套的折叠点展开
+[z     到当前打开的折叠的开始处。
+]z     到当前打开的折叠的末尾处。
+zj     向下移动。到达下一个折叠的开始处。关闭的折叠也被计入。
+zk     向上移动到前一折叠的结束处。关闭的折叠也被计入。
+
+zf      创建折叠，比如在marker方式下：                  
+         zf56G，创建从当前行起到56行的代码折叠；	                  
+         10zf或10zf+或zf10↓，创建从当前行起到后10行的代码折叠。                  
+         10zf-或zf10↑，创建从当前行起到之前10行的代码折叠。                  
+         在括号处zf%，创建从当前行起到对应的匹配的括号上去（（），{}，[]，<>等）。
+ 
+zd      删除 (delete) 在光标下的折叠。
+         仅当 'foldmethod' 设为 "manual" 或 "marker" 时有效。
+ 
+zD     循环删除 (Delete) 光标下的折叠，即嵌套删除折叠。
+         仅当 'foldmethod' 设为 "manual" 或 "marker" 时有效。
+ 
+zE      除去 (Eliminate) 窗口里“所有”的折叠。
+        仅当 'foldmethod' 设为 "manual" 或 "marker" 时有效。
+
+>>>>>>gobject 官网
+https://developer.gnome.org/glib/stable/glib-Pointer-Arrays.html
+
+>>>>>>git
+$ git merge --squash another  
+$ git commit -m "message here"  
+--squash 选项的含义是：本地文件内容与不使用该选项的合并结果相同，但是不提交、不移动HEAD，因此需要一条额外的commit命令。其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。
