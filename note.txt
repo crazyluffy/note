@@ -147,6 +147,9 @@ resize: 调整窗口高度
 vertical resize: 调整窗口宽度
 bn: 跳到下一个文件
 bp: 跳到上一个文件
+zt: 将当前行置于页面开始
+zz: 将当前行置于页面中间
+zb: 将当前行置于页面结尾
 set fdm=XXX : 设置折叠方式
         manual          手工定义折叠         
         indent          更多的缩进表示更高级别的折叠         
