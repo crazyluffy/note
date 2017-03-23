@@ -141,6 +141,7 @@ set cindent
 set shiftwidth=4
 set expandtab
 set hlsearch
+set ff=doc/unix/mac 设置文档显示格式（是否显示行末^m）
 let c_space_errors=1
 ts: ctags中显示所有的变量定义
 resize: 调整窗口高度
