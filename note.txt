@@ -151,6 +151,8 @@ vertical resize: 调整窗口宽度
 set path+=path 将path加入到系统头文件路径中
 g + f : 跳转至光标所指的头文件
 ctrl-o: 从头文件跳转回原来的文件
+ctrl-y: 向下翻一行
+ctrl-e: 向上翻一行
 bn: 跳到下一个文件
 bp: 跳到上一个文件
 zt: 将当前行置于页面开始
