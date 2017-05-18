@@ -54,6 +54,7 @@ info local: 打印当前栈变量
 set var ret=0 : 设置运行时变量的值
 print ret=-1 : 同上
 
+http://www.kancloud.cn/wizardforcel/gdb-tips-100/146744
 
 >>>>dmesg:
 collector[1847]: segfault at 000000000000000c rip 000000000040308a rsp 0000007fbffff820 error 4
