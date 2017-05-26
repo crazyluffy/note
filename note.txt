@@ -256,3 +256,6 @@ EasyDeploy中Commander的IP地址。
 SFTP和FTPS服务器的IP地址。
 150
 设置TFTP服务器地址选项，指定为客户端分配的TFTP服务器的地址。
+
+>>>>>>socket
+http://www.cnblogs.com/kissazi2/p/3158603.html recvmsg获取目的IP
